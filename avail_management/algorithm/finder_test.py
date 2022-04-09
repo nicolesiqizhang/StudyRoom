@@ -2,6 +2,7 @@ import unittest
 from datetime import datetime
 from avail_management.algorithm.finder import *
 
+
 class TestFinder(unittest.TestCase):
 
     dates = []

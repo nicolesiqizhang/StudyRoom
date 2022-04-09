@@ -1,0 +1,39 @@
+{% block content %}
+    <h1>Existing orders:</h1>
+    {% if order_list %}
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Customer Name</th>
+                <th>Manager Name</th>
+            </tr>
+        {% for order in order_list %}
+        <tr>
+            <th> {{order.id}}</th>
+            <th> {{order.start_date.date}}</th>
+            <th> {{order.end_date.date}}</th>
+            <th> {{order.customer_name}}</th>
+            <th> {{order.manager_name}}</th>
+        </tr>
+        {% endfor %}
+        </table>
+        <dl>
+            <dt>assuming the maximum capacity is: {{max_capacity}}</dt>
+                <dd>the next available date for new customer is: {{next_avail_date}}</dd>
+        </dl>
+    {% else %}
+        <p>No orders are available.</p>
+    {% endif %}
+    {% if allow_new_customer %}
+    <h1>Add new orders:</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            <table>
+            {{ new_order_form.as_table }}
+            </table>
+            <input type="submit" value="Submit">
+        </form>
+    {% endif %}
+{% endblock %}
